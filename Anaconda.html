@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Anaconda</title>
+
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+header {
+    background: #222;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+
+.editor {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+textarea {
+    flex: 1;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    resize: none;
+    outline: none;
+}
+
+
+iframe {
+    width: 50%;
+    border: none;
+}
+
+
+button {
+    padding: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+
+button:hover {
+    background: #0056b3;
+}
+</style>
+</head>
+
+
+<link rel="icon" type="image/png" href="logo.png">
+
+
+<body>
+
+
+<header>
+    <h2>Local Coding App</h2>
+    <button onclick="runCode()">Run Code</button>
+</header>
+
+
+<div class="container">
+
+
+    <div class="editor">
+        <textarea id="htmlCode" placeholder="Write HTML here..."></textarea>
+        <textarea id="cssCode" placeholder="Write CSS here..."></textarea>
+        <textarea id="jsCode" placeholder="Write JavaScript here..."></textarea>
+    </div>
+
+
+    <iframe id="preview"></iframe>
+
+
+</div>
+
+
+<script>
+function runCode() {
+    const html = document.getElementById("htmlCode").value;
+    const css = "<style>" + document.getElementById("cssCode").value + "</style>";
+    const js = "<script>" + document.getElementById("jsCode").value + "<\/script>";
+
+
+    const previewFrame = document.getElementById("preview");
+    const preview = previewFrame.contentDocument || previewFrame.contentWindow.document;
+
+
+    preview.open();
+    preview.write(html + css + js);
+    preview.close();
+}
+</script>
+
+
+</body>
+</html>
